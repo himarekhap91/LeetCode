@@ -1,15 +1,19 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        // Approach 1 - Sort the array. Loop from 0 to n and check if the number is equal to the value in that position 
-        Arrays.sort(nums);
-        int length = nums.length + 1;
-        for(int i = 0 ; i < length; i++){
-         if(i == nums.length){
-                return i;
-            } else if(!(i == nums[i])){
-                return i;
-            }
-        }
-        return 0;
+     // Approach 2 - We know the expected numbers that needs to be present as the range is 0 to n 
+     int range = nums.length;
+     int expectedSum = 0;
+     int currentSum = 0;
+    
+     for(int i = 1; i < range+1 ; i++){
+         expectedSum += i;
+     }
+        
+      for(int i = 0; i < nums.length ; i++){
+         currentSum += nums[i];
+     }
+      
+        
+        return expectedSum - currentSum;
     }
 }
